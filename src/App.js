@@ -3,6 +3,7 @@ import words from "./wordList.json"
 import { HangmanDrawing } from "./HangmanDrawing"
 import { HangmanWord } from "./HangmanWord"
 import { Keyboard } from "./Keyboard"
+import { keyboard } from "@testing-library/user-event/dist/keyboard"
 
 function App() {
 
@@ -51,7 +52,10 @@ function App() {
       <HangmanDrawing numberOfGuesses={ incorrectLetters.length } />
       <HangmanWord guessedLetters={ guessedLetters } wordToGuess={ wordToGuess } />
       <div style={ { alignSelf: "stretch" } }>
-        <Keyboard />
+        <Keyboard
+          activeLetters={ guessedLetters.filter(letter => wordToGuess.includes(letter)) }
+          inactiveLetters={ incorrectLetters }
+          addGuessedLetter={ addGuessedLetter } />
       </div>
     </div>
 
