@@ -29,7 +29,7 @@ const KEYS = [
   "z",
 ]
 
-export function Keyboard({ activeLetters, inactiveLetters, addGuessedLetter }) {
+export function Keyboard({ activeLetters, inactiveLetters, addGuessedLetter, disabled = false }) {
   return (
     <div
       style={ {
@@ -44,8 +44,10 @@ export function Keyboard({ activeLetters, inactiveLetters, addGuessedLetter }) {
           <button onClick={ () => addGuessedLetter(key) } className={ `${ styles.btn } 
           ${ isActive ? styles.active : "" } 
           ${ isInactive ? styles.inactive : "" }` } key={ key }
-            disabled={ isInactive || isActive } > { key }</button>
+            disabled={ isInactive || isActive || disabled } > { key }</button>
         )
       }) }    </div>
   )
 }
+
+//set disabled's default value to false with proptypes
